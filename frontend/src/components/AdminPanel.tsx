@@ -3,9 +3,22 @@
 import { useEffect, useState } from "react";
 import api from '@/utils/axiosInstance';
 
+interface Balance {
+  asset: string;
+  amount: number;
+}
+
+interface User {
+  id: string | number; // Assuming id is string or number; adjust if known
+  username: string;
+  trading_enabled: boolean;
+  Balances?: Balance[]; // Optional, as per ?. usage
+  // Add other properties if known
+}
+
 export default function AdminPanel() {
-  const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
+  const [users, setUsers] = useState<User[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User['id'] | null>(null);
   const [asset, setAsset] = useState("USDT");
   const [amount, setAmount] = useState(0);
   const [enabled, setEnabled] = useState(true);
@@ -39,7 +52,7 @@ export default function AdminPanel() {
   return (
     <div>
       <ul className="space-y-2">
-        {users.map((user: any) => (
+        {users.map((user) => (
           <li key={user.id} onClick={() => setSelectedUser(user.id)} className="cursor-pointer bg-gray-800 p-4 rounded shadow hover:bg-gray-700 transition">
             {user.username} - Trading: {user.trading_enabled ? "Enabled" : "Disabled"}
             <ul className="ml-4">
