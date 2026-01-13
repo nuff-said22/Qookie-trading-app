@@ -21,7 +21,10 @@ type Period = 'day' | 'month' | 'year';
 
 interface Coin {
   symbol: string;
-  // Add other properties here if known (e.g., name: string; price: number;)
+  price: number;
+  change24h: number;
+  volume: number;
+  // Add other properties here if known (e.g., name: string;)
 }
 
 export default function Trading() {
