@@ -14,7 +14,7 @@ import { jwtDecode } from "jwt-decode";
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
-const socket = io("http://localhost:5000");
+const socket = io(process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000')
 
 export default function Trading() {
   const [coins, setCoins] = useState([]);

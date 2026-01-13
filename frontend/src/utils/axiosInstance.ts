@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation'; // For redirects (client-side)
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000', // Your backend
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
 });
 
 // Request interceptor: Add token if exists
