@@ -16,10 +16,12 @@ ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, T
 
 const socket = io(process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000')
 
+type Period = 'day' | 'month' | 'year';
+
 export default function Trading() {
   const [coins, setCoins] = useState([]);
   const [selectedCoin, setSelectedCoin] = useState(null);
-  const [period, setPeriod] = useState("day"); // day, month, year
+  const [period, setPeriod] = useState<Period>("day"); // day, month, year
   const [chartData, setChartData] = useState(null);
   const router = useRouter();
 
@@ -51,7 +53,7 @@ export default function Trading() {
 
   useEffect(() => {
     if (selectedCoin) {
-      const lengths = { day: 24, month: 30, year: 365 }; // Hours/days
+      const lengths: Record<Period, number> = { day: 24, month: 30, year: 365 }; // Hours/days
       const dataPoints = Array.from({length: lengths[period]}, () => Math.random() * 100 + 50 * Math.random()); // Different per period
       setChartData({
         labels: Array.from({length: lengths[period]}, (_, i) => i + 1),
