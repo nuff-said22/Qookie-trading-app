@@ -44,7 +44,9 @@ export default function Trading() {
 
     socket.on("priceUpdate", setCoins);
 
-    return () => socket.off("priceUpdate");
+    return () => {
+      socket.off("priceUpdate");
+    };
   }, [router]);
 
   useEffect(() => {
