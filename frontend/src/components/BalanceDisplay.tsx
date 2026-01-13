@@ -3,9 +3,19 @@
 import { useEffect, useState } from "react";
 import api from '@/utils/axiosInstance'; // Updated import
 
+interface Balance {
+  asset: string;
+  amount: number;
+}
+
+interface PortfolioItem {
+  coin: string;
+  amount: number;
+}
+
 export default function BalanceDisplay({ refreshKey = 0 }: { refreshKey?: number }) {
-  const [balances, setBalances] = useState([]);
-  const [portfolio, setPortfolio] = useState([]);
+  const [balances, setBalances] = useState<Balance[]>([]);
+  const [portfolio, setPortfolio] = useState<PortfolioItem[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
