@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import io from "socket.io-client";
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend } from 'chart.js';
+import type { ChartData } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import CoinList from "@/components/CoinList";
 import OrderForm from "@/components/OrderForm";
@@ -22,7 +23,7 @@ export default function Trading() {
   const [coins, setCoins] = useState([]);
   const [selectedCoin, setSelectedCoin] = useState(null);
   const [period, setPeriod] = useState<Period>("day"); // day, month, year
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState<ChartData<'line', number[], number> | null>(null);
   const router = useRouter();
 
   useEffect(() => {
