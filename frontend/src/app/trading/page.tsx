@@ -19,9 +19,14 @@ const socket = io(process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
 
 type Period = 'day' | 'month' | 'year';
 
+interface Coin {
+  symbol: string;
+  // Add other properties here if known (e.g., name: string; price: number;)
+}
+
 export default function Trading() {
-  const [coins, setCoins] = useState([]);
-  const [selectedCoin, setSelectedCoin] = useState(null);
+  const [coins, setCoins] = useState<Coin[]>([]);
+  const [selectedCoin, setSelectedCoin] = useState<Coin | null>(null);
   const [period, setPeriod] = useState<Period>("day"); // day, month, year
   const [chartData, setChartData] = useState<ChartData<'line', number[], number> | null>(null);
   const router = useRouter();
