@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import api from '@/utils/axiosInstance'; // Updated import
 
-export default function BalanceDisplay() {
+export default function BalanceDisplay({ refreshKey = 0 }: { refreshKey?: number }) {
   const [balances, setBalances] = useState([]);
   const [portfolio, setPortfolio] = useState([]);
 
@@ -19,7 +19,7 @@ export default function BalanceDisplay() {
       }
     };
     fetchData();
-  }, []);
+  }, [refreshKey]);
 
   return (
     <div>

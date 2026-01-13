@@ -10,6 +10,7 @@ const Balance = require('./models/Balance');
 const Deposit = require('./models/Deposit');
 const Trade = require('./models/Trade');
 const Portfolio = require('./models/Portfolio');
+const Withdrawal = require('./models/Withdrawal');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');

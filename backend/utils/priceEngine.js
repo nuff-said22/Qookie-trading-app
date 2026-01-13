@@ -15,7 +15,9 @@ function seedCoins() {
 // Random walk update
 function updatePrices(io) {
   memeCoins = memeCoins.map(coin => {
-    const delta = (Math.random() * 2 - 1) * coin.volatility; // -vol to +vol
+    // Bias upward slightly while keeping room for dips
+    const bias = 0.25; // tilt toward gains
+    const delta = ((Math.random() * 2 - 1) + bias) * coin.volatility;
     let newPrice = coin.price * (1 + delta);
     if (newPrice < 0.01) newPrice = 0.01; // Prevent near-zero/negative
     const change24h = ((newPrice - coin.price) / coin.price) * 100;
